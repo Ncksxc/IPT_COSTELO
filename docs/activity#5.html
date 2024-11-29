@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDAS Calculator and Font Size Adjuster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0ebe5;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            background-color: #fff5e1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #ffbd59;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #d96459;
+            font-size: 1.4em;
+            margin: 0 0 15px;
+        }
+
+        h3 {
+            color: #6c5b7b;
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 6px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            text-align: center;
+            color: #333;
+        }
+
+        button {
+            background-color: #ff847c;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #d96459;
+        }
+
+        #result {
+            font-weight: bold;
+            color: #2a363b;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        #helloText {
+            font-size: 1.2em;
+            color: #4a4a4a;
+            margin: 15px 0;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .font-button {
+            width: 48%;
+            padding: 8px;
+            background-color: #99b898;
+            color: white;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .font-button:hover {
+            background-color: #708870;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <h2>MDAS Calculator</h2>
+            <form id="mdasForm">
+                <label for="num1">Number 1:</label>
+                <input type="number" id="num1" required>
+
+                <label for="num2">Number 2:</label>
+                <input type="number" id="num2" required>
+
+                <label for="num3">Number 3:</label>
+                <input type="number" id="num3" required>
+
+                <label for="num4">Number 4:</label>
+                <input type="number" id="num4" required>
+
+                <label for="num5">Number 5:</label>
+                <input type="number" id="num5" required>
+
+                <button type="button" onclick="calculateMDAS()">Calculate</button>
+            </form>
+            <h3>Result: <span id="result"></span></h3>
+        </div>
+
+        <div class="container">
+            <h2>Font Size Adjuster</h2>
+            <br>
+            
+            <p id="helloText">Hello World!</p>
+            <div class="button-container">
+                <button class="font-button" onclick="increaseFontSize()">Increase Font Size</button>
+                <button class="font-button" onclick="decreaseFontSize()">Decrease Font Size</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateMDAS() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            const num3 = parseFloat(document.getElementById("num3").value);
+            const num4 = parseFloat(document.getElementById("num4").value);
+            const num5 = parseFloat(document.getElementById("num5").value);
+
+            let result = (num1 * num2) / num3 + num4 - num5;
+            document.getElementById("result").textContent = result;
+        }
+
+        function increaseFontSize() {
+            const textElement = document.getElementById("helloText");
+            let currentSize = window.getComputedStyle(textElement).fontSize;
+            let newSize = parseFloat(currentSize) + 2;
+            
+            if (newSize <= 90) {
+                textElement.style.fontSize = newSize + "px";
+            }
+        }
+
+        function decreaseFontSize() {
+            const textElement = document.getElementById("helloText");
+            let currentSize = window.getComputedStyle(textElement).fontSize;
+            let newSize = parseFloat(currentSize) - 2;
+            
+            
+            if (newSize >= 8) {
+                textElement.style.fontSize = newSize + "px";
+            }
+        }
+    </script>
+</body>
+</html>
